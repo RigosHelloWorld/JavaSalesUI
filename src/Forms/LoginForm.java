@@ -1,11 +1,11 @@
-package Forms;
+package forms;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import Person.UserAccount;
+import person.UserAccount;
 
 public class LoginForm extends JFrame {
 

@@ -1,4 +1,5 @@
-import Forms.LoginForm;
+import dataCreator.ReadAccounts;
+import forms.LoginForm;
 
 public class Driver{
     public static void main(String[] args) {
@@ -7,6 +8,9 @@ public class Driver{
         loginForm.initiliaze();
 
       
+        ReadAccounts readAccounts = new ReadAccounts();
+
+        System.err.println(readAccounts.getAccount().toString());
 
 
     }

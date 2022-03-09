@@ -28,9 +28,6 @@ public class ReadAccounts {
                 line = scanner.nextLine();
               
                 String[] account = line.split(splitBy);
-                
-
-
                 accounts.put(account[0], account[1]);
             }
 
