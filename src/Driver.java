@@ -1,16 +1,19 @@
 import dataCreator.ReadAccounts;
 import forms.LoginForm;
+import server.AccountsDAO;
 
 public class Driver{
     public static void main(String[] args) {
-        System.out.println("My new Java Project");
-        LoginForm loginForm = new LoginForm();
-        loginForm.initiliaze();
+        // System.out.println("My new Java Project");
+        // LoginForm loginForm = new LoginForm();
+        // loginForm.initiliaze();
 
       
-        ReadAccounts readAccounts = new ReadAccounts();
+        // ReadAccounts readAccounts = new ReadAccounts();
 
-        System.err.println(readAccounts.getAccount().toString());
+        // System.err.println(readAccounts.getAccount().toString());
+
+
 
 
     }
