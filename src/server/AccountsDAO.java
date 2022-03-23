@@ -4,6 +4,9 @@ import java.sql.*;
 public class AccountsDAO implements DAOInterface{
     
 
-    
+    public void getAccounts(){
+        
+    }
+
 
 }
