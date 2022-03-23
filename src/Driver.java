@@ -1,6 +1,9 @@
-import dataCreator.ReadAccounts;
+import java.io.File;
+
 import forms.LoginForm;
 import server.AccountsDAO;
+import server.Database;
+import server.data.FILE_CONSTANTS;
 
 public class Driver{
     public static void main(String[] args) {
@@ -15,6 +18,8 @@ public class Driver{
 
 
 
+        Database database = new Database();
+        database.init();
 
     }
 }

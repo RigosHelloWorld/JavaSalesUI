@@ -1,6 +1,5 @@
 package person;
 
-import dataCreator.FileChecker;
 
 public class UserAccount {
     private String username;
@@ -13,11 +12,7 @@ public class UserAccount {
 
     }
 
-    public boolean isValide(){
-        
-        FileChecker fileChecker = new FileChecker(this.username, this.password);
-        return fileChecker.userFoundScanner();
-    }
+
  
 
 }

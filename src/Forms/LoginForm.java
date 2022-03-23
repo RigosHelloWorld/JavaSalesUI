@@ -92,7 +92,17 @@ public class LoginForm extends JFrame {
 
                 UserAccount userAccount = new UserAccount(tfEmail.getText(), new String(pfPassword.getPassword()));
 
-                if (userAccount.isValide()) {
+                /**
+                 * 
+                 * 
+                 * 
+                 * 
+                 * come back to this once the database is made 
+                 * 
+                 * 
+                 * 
+                 */
+                if (true) {
                     System.out.println(tfEmail.getText());
                     System.out.println(String.valueOf(pfPassword.getPassword()));
                     JOptionPane.showMessageDialog(LoginForm.this, "Succes", "title", JOptionPane.PLAIN_MESSAGE);
