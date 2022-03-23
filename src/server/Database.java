@@ -46,6 +46,7 @@ public class Database {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate(CREATEDATABASE);
+
             ConnectionFactory.closeConnection(null, statement, connection);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -100,8 +101,8 @@ public class Database {
                      String[] data = line.split(splitBy);
 
                      statement.setString(1, data[0]);
-                     statement.setString(2, data[1]);
-
+                     //statement.setString(2, data[1]);
+                     statement.setString(2, Encryptor.getHash(data[1]));
                      statement.executeUpdate();
 
                 }
