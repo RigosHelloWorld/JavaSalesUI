@@ -3,6 +3,7 @@ import java.io.File;
 import forms.LoginForm;
 import server.AccountsDAO;
 import server.Database;
+import server.Encryptor;
 import server.data.FILE_CONSTANTS;
 
 public class Driver{
@@ -20,6 +21,9 @@ public class Driver{
 
         Database database = new Database();
         database.init();
+
+        Encryptor.getHash("Hello");
+        Encryptor.getHash("hello");
 
     }
 }

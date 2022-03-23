@@ -22,12 +22,12 @@ public class Tables {
 
     private void createTableData() {
 
-        int i = 0;
-        for (String table : tableNames) {
+    
+        for(int i=0; i < tableNames.size();i++){
             tables.put(tableNames.get(i), columnData.get(i));
-            i++;
         }
 
+      
     }
 
     public Map<String, String> getTables() {
@@ -41,6 +41,6 @@ public class Tables {
 
     private void setColumnData() {
         columnData = new ArrayList<>();
-        columnData.add("(user VARCHAR(255) not NULL, " + "password VARCHAR(12) not NULL)");
+        columnData.add("(user VARCHAR(255) not NULL, " + "password VARCHAR(255) not NULL)");
     }
 }
