@@ -10,7 +10,7 @@ public class ConnectionFactory{
 
     private static final String URL = "jdbc:mysql://localhost:3306/JavaSalesUI";
     private static final String USER = "root";
-    private static final String PASSWORD = "COLMAR2134";
+    private static final String PASSWORD = "";
 
 
 
