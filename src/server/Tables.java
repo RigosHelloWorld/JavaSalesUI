@@ -6,41 +6,37 @@ import java.util.Map;
 
 public class Tables {
 
-    private  ArrayList<String> tableNames = null;
-    private  ArrayList<String> columnData = null;
+    private ArrayList<String> tableNames = null;
+    private ArrayList<String> columnData = null;
 
     private Map<String, String> tables;
 
-   
-    public void init(){
+    public void init() {
         tables = new HashMap<>();
-        setTableNames();
-        setColumnData();
         createTableData();
     }
 
-
     private void createTableData() {
 
-    
-        for(int i=0; i < tableNames.size();i++){
-            tables.put(tableNames.get(i), columnData.get(i));
+        for (Map.Entry<String, String> allTables : getTableSchema().entrySet()) {
+            tables.put(allTables.getKey(), allTables.getValue());
         }
 
-      
+        // for (int i = 0; i < tableNames.size(); i++) {
+        // tables.put(tableNames.get(i), columnData.get(i));
+        // }
+
     }
 
     public Map<String, String> getTables() {
         return tables;
     }
 
-    private void setTableNames() {
-        tableNames = new ArrayList<>();
-        tableNames.add("Users");
+    private Map<String, String> getTableSchema() {
+        Map<String, String> tableSchema = new HashMap<>();
+
+        tableSchema.put("Accounts", "(account_usernames VARCHAR(255) not NULL, " + "account_password VARCHAR(255) not NULL)");
+        return tableSchema;
     }
 
-    private void setColumnData() {
-        columnData = new ArrayList<>();
-        columnData.add("(user VARCHAR(255) not NULL, " + "password VARCHAR(255) not NULL)");
-    }
 }
