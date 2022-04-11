@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileReader;
 
 import forms.LoginForm;
 import server.AccountsDAO;
@@ -22,8 +23,8 @@ public class Driver{
         Database database = new Database();
         database.init();
 
-        Encryptor.getHash("Hello");
-        Encryptor.getHash("hello");
+        System.out.println(database.validateUser("rigo@gmail.com", "hELLO"));;
+      
 
     }
 }

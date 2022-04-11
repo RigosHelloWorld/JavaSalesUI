@@ -3,6 +3,7 @@ package server;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectionFactory{
@@ -26,10 +27,29 @@ public class ConnectionFactory{
 
     }
 
-    public static void closeConnection(ResultSet resultSet, Statement statement, Connection connection) throws Exception{
+    public static void closeConnection(ResultSet resultSet, Statement statement, Connection connection){
 
-        if(resultSet!= null) resultSet.close();
-        if(statement!= null) statement.close();
-        if(connection!= null) connection.close();
+        if(resultSet!= null){
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        if(statement!= null){
+            try {
+                statement.close();
+
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        if(connection!= null){
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
