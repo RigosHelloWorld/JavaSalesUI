@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-import person.UserAccount;
 import server.Database;
 
 public class LoginForm extends JFrame {

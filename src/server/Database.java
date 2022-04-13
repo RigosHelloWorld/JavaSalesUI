@@ -7,8 +7,6 @@ import java.sql.Statement;
 import java.util.Map;
 import java.util.Scanner;
 
-import com.mysql.cj.protocol.Resultset;
-
 import server.data.FILE_CONSTANTS;
 
 public class Database {
@@ -90,8 +88,8 @@ public class Database {
             connection = ConnectionFactory.getConnection();
             preStatement = connection.prepareStatement(sqlInsert);
             // if the file exist
-            if (FILE_CONSTANTS.FILE_PATH.exists()) {
-                scanner = new Scanner(FILE_CONSTANTS.FILE_PATH);
+            if (FILE_CONSTANTS.FILE_PATH_ACCOUNTS.exists()) {
+                scanner = new Scanner(FILE_CONSTANTS.FILE_PATH_ACCOUNTS);
                 String line = "";
                 String splitBy = ",";
                 // while theres another line
