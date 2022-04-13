@@ -1,30 +1,17 @@
-import java.io.File;
-import java.io.FileReader;
 
-import forms.LoginForm;
-import server.AccountsDAO;
 import server.Database;
-import server.Encryptor;
-import server.data.FILE_CONSTANTS;
+import windows.LoginForm;
 
-public class Driver{
+
+public class Driver {
     public static void main(String[] args) {
+
         // System.out.println("My new Java Project");
-        // LoginForm loginForm = new LoginForm();
-        // loginForm.initiliaze();
-
-      
-        // ReadAccounts readAccounts = new ReadAccounts();
-
-        // System.err.println(readAccounts.getAccount().toString());
-
-
+         LoginForm loginForm = new LoginForm();
+         loginForm.initiliaze();
 
         Database database = new Database();
         database.init();
-
-        System.out.println(database.validateUser("rigo@gmail.com", "hELLO"));;
-      
 
     }
 }

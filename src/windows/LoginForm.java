@@ -1,4 +1,4 @@
-package forms;
+package windows;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import person.UserAccount;
+import server.Database;
 
 public class LoginForm extends JFrame {
 
@@ -90,7 +91,6 @@ public class LoginForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                UserAccount userAccount = new UserAccount(tfEmail.getText(), new String(pfPassword.getPassword()));
 
                 /**
                  * 
@@ -102,10 +102,9 @@ public class LoginForm extends JFrame {
                  * 
                  * 
                  */
-                if (true) {
-                    System.out.println(tfEmail.getText());
-                    System.out.println(String.valueOf(pfPassword.getPassword()));
+                if (Database.validateUser(tfEmail.getText(), new String(pfPassword.getPassword()))) {
                     JOptionPane.showMessageDialog(LoginForm.this, "Succes", "title", JOptionPane.PLAIN_MESSAGE);
+                    
                 } else
                     JOptionPane.showMessageDialog(LoginForm.this, "Incorrect Email or Password", "Error",
                             JOptionPane.ERROR_MESSAGE);
