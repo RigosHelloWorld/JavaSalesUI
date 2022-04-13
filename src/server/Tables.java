@@ -1,13 +1,9 @@
 package server;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Tables {
-
-    private ArrayList<String> tableNames = null;
-    private ArrayList<String> columnData = null;
 
     private Map<String, String> tables;
 

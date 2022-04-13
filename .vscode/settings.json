@@ -4,6 +4,11 @@
     ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "/Users/rigo/Downloads/mysql-connector-java-8.0.28/mysql-connector-java-8.0.28.jar"
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/mysql-connector-java-8.0.28.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/commons-collections4-4.1.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-3.17.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-ooxml-3.17.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-ooxml-schemas-3.17.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/xmlbeans-2.6.0.jar"
     ]
 }
