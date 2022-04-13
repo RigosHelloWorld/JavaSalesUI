@@ -112,7 +112,7 @@ public class Database {
     }
 
 
-    public boolean validateUser(String userName, String password){
+    public static boolean validateUser(String userName, String password){
 
         Connection conn = null;
         Statement st = null;
