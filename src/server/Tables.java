@@ -6,6 +6,7 @@ import java.util.Map;
 public class Tables {
 
     private Map<String, String> tables;
+    Map<String, String> tableSchema = null;
 
     public void init() {
         tables = new HashMap<>();
@@ -13,6 +14,7 @@ public class Tables {
     }
 
     private void createTableData() {
+        setTableSchema();
 
         for (Map.Entry<String, String> allTables : getTableSchema().entrySet()) {
             tables.put(allTables.getKey(), allTables.getValue());
@@ -29,10 +31,16 @@ public class Tables {
     }
 
     private Map<String, String> getTableSchema() {
-        Map<String, String> tableSchema = new HashMap<>();
+    
+        return tableSchema;
+    }
+
+    private void setTableSchema(){
+        tableSchema = new HashMap<>();
 
         tableSchema.put("Accounts", "(account_usernames VARCHAR(255) not NULL, " + "account_password VARCHAR(255) not NULL)");
-        return tableSchema;
+        
+        tableSchema.put("Inventory", "(slab_num INT NOT NULL," +  "width DOUBLE NOT NULL," + "length INT NOT NULL, mfg_part_num VARCHAR(100) NOT NULL)" );
     }
 
 }

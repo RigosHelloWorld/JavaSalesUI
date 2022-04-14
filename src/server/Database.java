@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import server.data.FILE_CONSTANTS;
+import helperClasses.ReadExcelFile;
 
 public class Database {
 
@@ -16,6 +18,7 @@ public class Database {
         createDatabase();
         createTables();
         loadUsers();
+        loadInventory();
     }
 
     private void dropDatabase() {
@@ -83,19 +86,19 @@ public class Database {
         Connection connection = null;
         PreparedStatement preStatement = null;
 
-        String sqlInsert = "INSERT INTO Accounts(account_usernames,account_password) values (?,?)";
+        final String SQL_INSERT_STATEMENT = "INSERT INTO Accounts(account_usernames,account_password) values (?,?)";
         try {
             connection = ConnectionFactory.getConnection();
-            preStatement = connection.prepareStatement(sqlInsert);
+            preStatement = connection.prepareStatement(SQL_INSERT_STATEMENT);
             // if the file exist
             if (FILE_CONSTANTS.FILE_PATH_ACCOUNTS.exists()) {
                 scanner = new Scanner(FILE_CONSTANTS.FILE_PATH_ACCOUNTS);
                 String line = "";
-                String splitBy = ",";
+                
                 // while theres another line
                 while (scanner.hasNextLine()) {
                     line = scanner.nextLine();
-                    String[] data = line.split(splitBy);
+                    String[] data = line.split(String.valueOf(FILE_CONSTANTS.FILE_SEPERATOR));
                     preStatement.setString(1, data[0]);
                     preStatement.setString(2, Encryptor.getHash(data[1].trim()));
                     preStatement.executeUpdate();
@@ -106,6 +109,66 @@ public class Database {
             System.out.println(e.getMessage());
         } finally {
             ConnectionFactory.closeConnection(null, preStatement, connection);
+        }
+    }
+
+    private void loadInventory(){
+        Connection conn = null;
+        PreparedStatement preStatement = null;
+
+        final String SQL_INSERT_STATEMENT = "INSERT INTO INVENTORY(slab_num,width,length, mfg_part_num) VALUES(?,?,?,?)";
+        try{
+            conn = ConnectionFactory.getConnection();
+            preStatement = conn.prepareStatement(SQL_INSERT_STATEMENT);
+
+            ReadExcelFile rx = new ReadExcelFile(FILE_CONSTANTS.INVENTORY_FILE_PATH);
+
+            List<String> list = rx.getCellData();
+
+            Iterator<String> itr = list.iterator();
+
+            int colNum = 1;
+
+            /**
+             * We are currently hard coding the column iterations
+             * 
+             * Problem with this an outside user would not know without looking at the file how the data is structured
+             */
+            while(itr.hasNext()){
+
+                switch(colNum){
+                    case 1:{
+                        preStatement.setInt(colNum++, Integer.parseInt(itr.next()));
+                        
+                        break;
+                    }
+                    case 2:{
+                        preStatement.setDouble(colNum++, Double.parseDouble(itr.next()));
+                        
+                        break;
+
+                    }
+                    case 3:{
+                        preStatement.setDouble(colNum++, Double.parseDouble(itr.next()));
+                        
+                        break;
+
+                    }
+                    case 4:{
+                        preStatement.setString(colNum++, itr.next());
+                        preStatement.executeUpdate();
+                        //get rid of the "," that we used as a row seperator
+                        itr.next();
+                        colNum = 1; 
+                        break;
+
+                    }
+                }
+                
+            }
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
         }
     }
 
