@@ -1,4 +1,4 @@
-package server;
+package helperClasses;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

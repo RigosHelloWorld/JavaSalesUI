@@ -1,12 +1,3 @@
-sleepyAndrea90@att.net , HELLO
-bewilderedAnne@web.de, HELLO
-Paulastormy@tiscali.it, HELLO
-Paulawrong@juno.com, HELLO
-wide-eyedBrooke@ymail.com, HELLO
-Samuelprickly@aim.com, HELLO
-Kaylajolly@bigpond.com, HELLO
-smoggyLucas97@hotmail.co.uk, HELLO
-Coreystrange@free.fr, HELLO
-Thomasill@ntlworld.com, HELLO
 rr@gmail.com, password
 rigo@gmail.com,  hELLO
+java@gmail.com, helloWorld

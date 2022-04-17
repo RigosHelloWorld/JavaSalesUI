@@ -3,12 +3,15 @@ package server;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import helperClasses.Encryptor;
 import helperClasses.ReadExcelFile;
 
 public class Database {
@@ -17,8 +20,8 @@ public class Database {
         dropDatabase();
         createDatabase();
         createTables();
-        loadUsers();
-        loadInventory();
+        loadDatabaseData();
+
     }
 
     private void dropDatabase() {
@@ -73,12 +76,17 @@ public class Database {
                 String tableData = "Create table " + table.getKey() + " " + table.getValue();
                 statement.executeUpdate(tableData);
             }
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
             ConnectionFactory.closeConnection(null, statement, connection);
         }
+    }
+
+    private void loadDatabaseData() {
+        loadUsers();
+        loadInventory();
     }
 
     private void loadUsers() {
@@ -94,7 +102,7 @@ public class Database {
             if (FILE_CONSTANTS.FILE_PATH_ACCOUNTS.exists()) {
                 scanner = new Scanner(FILE_CONSTANTS.FILE_PATH_ACCOUNTS);
                 String line = "";
-                
+
                 // while theres another line
                 while (scanner.hasNextLine()) {
                     line = scanner.nextLine();
@@ -112,12 +120,12 @@ public class Database {
         }
     }
 
-    private void loadInventory(){
+    private void loadInventory() {
         Connection conn = null;
         PreparedStatement preStatement = null;
 
         final String SQL_INSERT_STATEMENT = "INSERT INTO INVENTORY(slab_num,width,length, mfg_part_num) VALUES(?,?,?,?)";
-        try{
+        try {
             conn = ConnectionFactory.getConnection();
             preStatement = conn.prepareStatement(SQL_INSERT_STATEMENT);
 
@@ -132,63 +140,134 @@ public class Database {
             /**
              * We are currently hard coding the column iterations
              * 
-             * Problem with this an outside user would not know without looking at the file how the data is structured
+             * Problem with this an outside user would not know without looking at the file
+             * how the data is structured
              */
-            while(itr.hasNext()){
+            while (itr.hasNext()) {
 
-                switch(colNum){
-                    case 1:{
+                switch (colNum) {
+                    case 1: {
                         preStatement.setInt(colNum++, Integer.parseInt(itr.next()));
-                        
+
                         break;
                     }
-                    case 2:{
+                    case 2: {
                         preStatement.setDouble(colNum++, Double.parseDouble(itr.next()));
-                        
+
                         break;
 
                     }
-                    case 3:{
+                    case 3: {
                         preStatement.setDouble(colNum++, Double.parseDouble(itr.next()));
-                        
+
                         break;
 
                     }
-                    case 4:{
+                    case 4: {
                         preStatement.setString(colNum++, itr.next());
                         preStatement.executeUpdate();
-                        //get rid of the "," that we used as a row seperator
+                        // get rid of the "," that we used as a row seperator
                         itr.next();
-                        colNum = 1; 
+                        colNum = 1;
                         break;
 
                     }
                 }
-                
+
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection(null, preStatement, conn);
         }
     }
 
+    public static List<String> getColumnNames(String tableName) {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        List<String> colNames = new ArrayList<>();
+        final String sqlStatement = "Select * from Inventory";
+        try {
 
-    public static boolean validateUser(String userName, String password){
+            conn = ConnectionFactory.getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery(sqlStatement);
+
+            ResultSetMetaData rs_meta_data = rs.getMetaData();
+            int colCount = rs_meta_data.getColumnCount();
+            for (int i = 1; i < colCount + 1; i++) {
+                colNames.add(rs_meta_data.getColumnName(i));
+            }
+
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection(rs, st, conn);
+
+        }
+
+        return colNames;
+
+    }
+
+    public static List<String> getInventoryData() {
+        List<String> data = new ArrayList<>();
+
+
 
         Connection conn = null;
         Statement st = null;
-        final String  VALIDATE_USER = "SELECT account_usernames, account_password FROM Accounts";
+        ResultSet rs = null;
 
+        final String SQL_STATEMENT = "Select * from inventory";
+
+        try {
+            conn = ConnectionFactory.getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery(SQL_STATEMENT);
+
+            while (rs.next()) {
+
+                String slab_num = String.valueOf(rs.getInt("slab_num"));
+                String width = String.valueOf(rs.getDouble("width"));
+                String length = String.valueOf(rs.getInt("length"));
+                String mfg_part_num = rs.getString("mfg_part_num");
+
+                data.add(slab_num);
+                data.add(width);
+                data.add(length);
+                data.add(mfg_part_num);
+
+            }
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e.getMessage());
+        }
+
+        return data;
+    }
+
+    public static boolean validateUser(String userName, String password) {
+
+        Connection conn = null;
+        Statement st = null;
+        final String VALIDATE_USER = "SELECT account_usernames, account_password FROM Accounts";
 
         try {
             conn = ConnectionFactory.getConnection();
             st = conn.createStatement();
             ResultSet rs = st.executeQuery(VALIDATE_USER);
 
-            while(rs.next()){
-               
-                if(userName.equals(rs.getString("account_usernames"))){
-                    if(Encryptor.getHash(password).equals(rs.getString("account_password"))) return true;
+            while (rs.next()) {
+
+                if (userName.equals(rs.getString("account_usernames"))) {
+                    if (Encryptor.getHash(password).equals(rs.getString("account_password")))
+                        return true;
                 }
 
             }

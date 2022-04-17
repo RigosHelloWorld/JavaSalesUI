@@ -20,7 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
 
 public class ReadExcelFile {
 
-    FileInputStream fileInputStream = null;
+    private  FileInputStream fileInputStream = null;
 
     //object to read the workbook
     
@@ -28,7 +28,7 @@ public class ReadExcelFile {
      * NOTE XSSFWorkbook : 
      * *****WORKS WITH EXCEL 2007 VERSION OR LATER****
      */
-    XSSFWorkbook workbook = null;
+    private  XSSFWorkbook workbook = null;
     //object to read the sheets
     
 
@@ -36,7 +36,7 @@ public class ReadExcelFile {
     //constructor
     public ReadExcelFile(File filePath) throws IOException {
         
-        //if the filePath doesnt exist throw an exception
+        //if the file doesnt exist throw an exception
         if(!filePath.exists()) throw new FileNotFoundException();
 
         fileInputStream = new FileInputStream(filePath);
