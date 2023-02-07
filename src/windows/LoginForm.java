@@ -90,17 +90,6 @@ public class LoginForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
-                /**
-                 * 
-                 * 
-                 * 
-                 * 
-                 * come back to this once the database is made 
-                 * 
-                 * 
-                 * 
-                 */
                 if (Database.validateUser(tfEmail.getText(), new String(pfPassword.getPassword()))) {
                     dispose();
                     Inventory in = new Inventory();

@@ -5,12 +5,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 
 import server.Database;
 
 import java.util.List;
-import java.util.Vector;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -67,6 +65,7 @@ public class Inventory extends JFrame {
 
     private void setModel(){
         model = new DefaultTableModel(colNames.toArray(),1);
+        model.removeRow(0);
         setModelData();
     }
 

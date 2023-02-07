@@ -188,16 +188,23 @@ public class Database {
         Statement st = null;
         ResultSet rs = null;
         List<String> colNames = new ArrayList<>();
-        final String sqlStatement = "Select * from Inventory";
+
+
+        final String GET_COL_NAMES = "Select * from Inventory";
+
+
         try {
 
             conn = ConnectionFactory.getConnection();
             st = conn.createStatement();
-            rs = st.executeQuery(sqlStatement);
+            rs = st.executeQuery(GET_COL_NAMES);
 
             ResultSetMetaData rs_meta_data = rs.getMetaData();
+
+
             int colCount = rs_meta_data.getColumnCount();
-            for (int i = 1; i < colCount + 1; i++) {
+
+            for (int i = 1; i <= colCount; i++) {
                 colNames.add(rs_meta_data.getColumnName(i));
             }
 
