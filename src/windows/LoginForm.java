@@ -13,17 +13,17 @@ public class LoginForm extends JFrame {
     private JPasswordField pfPassword;
 
     /*************** Components ***************/
-    JLabel lbLoginForm;
-    JLabel lbEmail;
-    JLabel lbPassword;
+    private JLabel lbLoginForm;
+    private JLabel lbEmail;
+    private JLabel lbPassword;
 
-    JButton btnLogin;
-    JButton btnCancel;
+    private JButton btnLogin;
+    private JButton btnCancel;
 
-    JPanel formPanel;
-    JPanel buttonsPanel;
+    private JPanel formPanel;
+    private JPanel buttonsPanel;
 
-    public void initiliaze() {
+    public void init() {
 
         createComponents();
         createFormPanel();
@@ -90,19 +90,10 @@ public class LoginForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
-                /**
-                 * 
-                 * 
-                 * 
-                 * 
-                 * come back to this once the database is made 
-                 * 
-                 * 
-                 * 
-                 */
                 if (Database.validateUser(tfEmail.getText(), new String(pfPassword.getPassword()))) {
-                    JOptionPane.showMessageDialog(LoginForm.this, "Succes", "title", JOptionPane.PLAIN_MESSAGE);
+                    dispose();
+                    Inventory in = new Inventory();
+                    //JOptionPane.showMessageDialog(LoginForm.this, "Succes", "title", JOptionPane.PLAIN_MESSAGE);
                     
                 } else
                     JOptionPane.showMessageDialog(LoginForm.this, "Incorrect Email or Password", "Error",

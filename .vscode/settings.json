@@ -4,11 +4,31 @@
     ],
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
+      
         "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/mysql-connector-java-8.0.28.jar",
-        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/commons-collections4-4.1.jar",
-        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-3.17.jar",
-        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-ooxml-3.17.jar",
-        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-ooxml-schemas-3.17.jar",
-        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/xmlbeans-2.6.0.jar"
+
+
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/commons-codec-1.15.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/commons-collections4-4.4.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/commons-io-2.11.0.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/commons-math3-3.6.1.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/log4j-api-2.17.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/log4j-core-2.17.1.jar",
+
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-examples-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-excelant-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-javadoc-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-ooxml-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-ooxml-full-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-ooxml-lite-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/poi-scratchpad-5.2.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/SparseBitSet-1.2.jar",
+       
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/ooxml-lib/commons-compress-1.21.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/ooxml-lib/commons-logging-1.2.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/ooxml-lib/curvesapi-1.07.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/ooxml-lib/slf4j-api-1.7.36.jar",
+        "/Users/rigo/Desktop/JavaTesting/JavaSalesUI/src/lib/ooxml-lib/xmlbeans-5.0.3.jar"
     ]
 }
